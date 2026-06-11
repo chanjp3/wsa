@@ -133,11 +133,13 @@ header.solid{background:rgba(11,22,38,.82);backdrop-filter:blur(14px);border-col
 /* sit vs charter */
 .versus{margin-top:26px;border-top:2px solid var(--ink);padding-top:22px}
 .versus .v-title{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
-.v-row{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;margin-bottom:14px}
+.v-row{display:grid;grid-template-columns:172px 1fr auto;gap:14px;align-items:center;margin-bottom:14px}
 .v-row .k{font-size:13.5px;color:var(--ink);font-weight:600}
 .v-row .bar{height:24px;background:var(--ice);border-radius:3px;overflow:hidden}
 .v-row .fill{height:100%;width:0;border-radius:3px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
 .v-row.sit .fill{background:#6b2f33}
+.v-row.sit2 .fill{background:#8a7174}
+.v-row.sit2 .amt{color:#8a6a6e}
 .v-row.fly .fill{background:linear-gradient(90deg,var(--wsa),var(--wsa-bright))}
 .v-row .amt{font-family:var(--mono);font-size:14px;white-space:nowrap}
 .v-row.sit .amt{color:#8a3b40}
@@ -146,7 +148,7 @@ header.solid{background:rgba(11,22,38,.82);backdrop-filter:blur(14px);border-col
 .ledger-result b{font-family:var(--serif);font-size:32px;font-weight:400}
 .ledger-result span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
 .ledger-note{font-size:12px;color:var(--slate);margin-top:14px;line-height:1.6}
-@media(max-width:560px){.lrow{grid-template-columns:1fr auto}.lrow .hr{display:none}.v-row{grid-template-columns:96px 1fr auto}}
+@media(max-width:560px){.lrow{grid-template-columns:1fr auto}.lrow .hr{display:none}.v-row{grid-template-columns:1fr auto;grid-template-areas:"k amt" "bar bar"}.v-row .k{grid-area:k}.v-row .amt{grid-area:amt}.v-row .bar{grid-area:bar}}
 /* maintenance */
 .mx-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,80px);align-items:center}
 .mx-photo{border-radius:6px;overflow:hidden;border:1px solid var(--line-l);box-shadow:0 24px 60px -30px rgba(19,34,47,.4);position:relative}
@@ -330,15 +332,15 @@ footer{background:var(--night);color:var(--mist);border-top:1px solid var(--line
     <div class="econ-copy">
       <div class="phase reveal"><b>Block 03</b> On the books · The owner's ledger</div>
       <h2 class="reveal">Charter flips<br>the <em>sign.</em></h2>
-      <h3 class="reveal">An idle Mustang still burns $39K a month.</h3>
-      <p class="reveal">Crew, hangar, insurance, training, and program minimums total an estimated $469,373 a year — whether the aircraft flies or not.</p>
+      <h3 class="reveal">Flying it yourself costs nearly $600K a year.</h3>
+      <p class="reveal">At 150 owner-flown hours, fixed costs, crew, programs, fuel, and the management fee total an estimated $598,308 — and an aircraft that just sits still burns $469,373.</p>
       <h3 class="reveal">Flying it pays you instead.</h3>
-      <p class="reveal">At 250 Part 135 hours and recent sales near $4,000/hr, the 85% aircraft allocation covers every operating cost and our management fee — and still nets the owner roughly $87K.</p>
+      <p class="reveal">Put 300 charter hours on the calendar and the 85% aircraft allocation covers every fixed cost, every flight hour — including your own 50 — and our management fee, with roughly $92K left over.</p>
       <h3 class="reveal">You stay in control.</h3>
       <p class="reveal">Your schedule always comes first. You set blackout dates and minimum notice, and approve availability before anything is booked.</p>
     </div>
     <div class="ledger reveal" id="ledger">
-      <div class="ledger-head"><span>WSA OWNER LEDGER — CITATION MUSTANG</span><b>250 CHARTER HRS · 85/15 SPLIT</b></div>
+      <div class="ledger-head"><span>WSA OWNER LEDGER — CITATION MUSTANG</span><b>ILLUSTRATIVE · 85/15 SPLIT</b></div>
       <div class="ledger-body">
         <div class="lrow hdr"><span>Line item</span><span>Hourly</span><span>250-hr year</span></div>
         <div class="lrow"><span class="nm">Part 135 gross charter sales</span><span class="hr">$4,000.00</span><span class="yr">$1,000,000</span></div>
@@ -348,12 +350,13 @@ footer{background:var(--night);color:var(--mist);border-top:1px solid var(--line
         <div class="lrow minus"><span class="nm">Annual management fee</span><span class="hr">$204.16</span><span class="yr">$51,041</span></div>
         <div class="lrow net"><span class="nm">Net charter proceeds to owner</span><span class="hr">$347.75</span><span class="yr">+$86,936</span></div>
         <div class="versus">
-          <div class="v-title">Same aircraft, same year</div>
-          <div class="v-row sit"><span class="k">Sits in the hangar</span><div class="bar"><div class="fill" data-w="84"></div></div><span class="amt">−$469,373</span></div>
-          <div class="v-row fly"><span class="k">Chartered with WSA</span><div class="bar"><div class="fill" data-w="16"></div></div><span class="amt">+$86,936</span></div>
+          <div class="v-title">Same aircraft, three ways to own it</div>
+          <div class="v-row sit2"><span class="k">Sits all year</span><div class="bar"><div class="fill" data-w="78"></div></div><span class="amt">−$469,373</span></div>
+          <div class="v-row sit"><span class="k">Owner-flown · 150 hrs</span><div class="bar"><div class="fill" data-w="100"></div></div><span class="amt">−$598,308</span></div>
+          <div class="v-row fly"><span class="k">Fly 50 · charter 300</span><div class="bar"><div class="fill" data-w="15"></div></div><span class="amt">+$92,178</span></div>
         </div>
-        <div class="ledger-result"><span>Annual swing</span><b>≈ $556,309</b></div>
-        <p class="ledger-note">Estimates from a current managed Citation Mustang: 250-hour utilization, Jet-A at $7.25/gal (~112 gal/hr), recent Part 135 sales near $4,000/hr. Operating cost is paid from the 85% aircraft allocation first. Illustration only — excludes acquisition, financing, depreciation, and taxes. We'll model your tail number specifically.</p>
+        <div class="ledger-result"><span>Annual swing vs. owner-flown</span><b>≈ $690,486</b></div>
+        <p class="ledger-note">Illustrative Citation Mustang economics: Jet-A at $7.25/gal (~112 gal/hr), recent Part 135 sales near $4,000/hr, fixed costs and management fee held constant across scenarios. Operating cost is paid from the 85% aircraft allocation first. Illustration only — excludes acquisition, financing, depreciation, and taxes. We'll model your tail number specifically.</p>
       </div>
     </div>
   </div>
