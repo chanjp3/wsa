@@ -112,27 +112,41 @@ header.solid{background:rgba(11,22,38,.82);backdrop-filter:blur(14px);border-col
 .svc li::before{content:"";position:absolute;left:0;top:17px;width:10px;height:1.5px;background:var(--wsa)}
 
 /* economics — the owner's ledger */
-.econ-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(34px,6vw,80px);align-items:center}
+.econ-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,80px);align-items:center}
 .econ-copy h3{font-family:var(--serif);font-weight:400;font-size:25px;margin:28px 0 8px}
 .econ-copy h3:first-of-type{margin-top:34px}
 .econ-copy p{color:var(--slate);font-size:15.5px}
 .ledger{background:#fff;border:1px solid var(--line-l);border-radius:6px;overflow:hidden;box-shadow:0 24px 60px -30px rgba(19,34,47,.35)}
-.ledger-head{display:flex;justify-content:space-between;padding:14px 24px;border-bottom:1px solid var(--line-l);font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--slate);text-transform:uppercase;background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(28,165,224,.05) 6px 7px)}
+.ledger-head{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 24px;border-bottom:1px solid var(--line-l);font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;color:var(--slate);text-transform:uppercase;background:repeating-linear-gradient(90deg,transparent 0 6px,rgba(28,165,224,.05) 6px 7px)}
 .ledger-head b{color:var(--wsa);font-weight:600}
-.ledger-body{padding:30px 24px}
-.bar-row{margin-bottom:24px}
-.bar-label{display:flex;justify-content:space-between;font-size:13.5px;font-weight:600;margin-bottom:8px}
-.bar-label span:last-child{font-family:var(--mono);font-weight:500}
-.bar{height:26px;background:var(--ice);overflow:hidden;border-radius:3px}
-.bar-fill{height:100%;width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1);border-radius:3px}
-.bf-cost{background:#17283e}
-.bf-offset{background:linear-gradient(90deg,var(--wsa),var(--wsa-bright))}
-.bf-net{background:#9db0c2}
-.ledger-result{border-top:1px solid var(--line-l);margin-top:6px;padding-top:20px;display:flex;justify-content:space-between;align-items:baseline}
-.ledger-result b{font-family:var(--serif);font-size:34px;font-weight:400}
+.ledger-body{padding:26px 24px}
+.lrow{display:grid;grid-template-columns:1fr auto auto;gap:14px;padding:11px 0;border-bottom:1px solid var(--line-l);font-size:14px;align-items:baseline}
+.lrow .nm{color:var(--ink)}
+.lrow .hr,.lrow .yr{font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+.lrow .hr{color:var(--slate)}
+.lrow.minus .nm::before{content:"− ";color:var(--slate)}
+.lrow.net{border-bottom:0;padding-top:14px}
+.lrow.net .nm{font-weight:600}
+.lrow.net .yr{color:var(--wsa);font-weight:600;font-size:15px}
+.lrow.hdr{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid var(--line-l);padding:6px 0}
+.lrow.hdr span{font-size:10px}
+/* sit vs charter */
+.versus{margin-top:26px;border-top:2px solid var(--ink);padding-top:22px}
+.versus .v-title{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--slate);margin-bottom:16px}
+.v-row{display:grid;grid-template-columns:150px 1fr auto;gap:14px;align-items:center;margin-bottom:14px}
+.v-row .k{font-size:13.5px;color:var(--ink);font-weight:600}
+.v-row .bar{height:24px;background:var(--ice);border-radius:3px;overflow:hidden}
+.v-row .fill{height:100%;width:0;border-radius:3px;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.v-row.sit .fill{background:#6b2f33}
+.v-row.fly .fill{background:linear-gradient(90deg,var(--wsa),var(--wsa-bright))}
+.v-row .amt{font-family:var(--mono);font-size:14px;white-space:nowrap}
+.v-row.sit .amt{color:#8a3b40}
+.v-row.fly .amt{color:var(--wsa);font-weight:600}
+.ledger-result{border-top:1px solid var(--line-l);margin-top:10px;padding-top:18px;display:flex;justify-content:space-between;align-items:baseline}
+.ledger-result b{font-family:var(--serif);font-size:32px;font-weight:400}
 .ledger-result span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate)}
-.ledger-note{font-size:12.5px;color:var(--slate);margin-top:14px;line-height:1.6}
-
+.ledger-note{font-size:12px;color:var(--slate);margin-top:14px;line-height:1.6}
+@media(max-width:560px){.lrow{grid-template-columns:1fr auto}.lrow .hr{display:none}.v-row{grid-template-columns:96px 1fr auto}}
 /* maintenance */
 .mx-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,80px);align-items:center}
 .mx-photo{border-radius:6px;overflow:hidden;border:1px solid var(--line-l);box-shadow:0 24px 60px -30px rgba(19,34,47,.4);position:relative}
@@ -311,35 +325,35 @@ footer{background:var(--night);color:var(--mist);border-top:1px solid var(--line
 </section>
 
 <!-- BLOCK 03: ECONOMICS -->
-<section id="economics" class="on-light">
+<section id="economics" class="econ on-light">
   <div class="wrap econ-grid">
     <div class="econ-copy">
       <div class="phase reveal"><b>Block 03</b> On the books · The owner's ledger</div>
-      <h2 class="reveal">Charter revenue<br>changes the <em>math.</em></h2>
-      <h3 class="reveal">Fixed costs don't pause when the aircraft does.</h3>
-      <p class="reveal">Crew salaries, hangar, insurance, and subscriptions accrue whether you fly 50 hours or 350. Charter puts the idle hours to work.</p>
+      <h2 class="reveal">Charter flips<br>the <em>sign.</em></h2>
+      <h3 class="reveal">An idle Mustang still burns $39K a month.</h3>
+      <p class="reveal">Crew, hangar, insurance, training, and program minimums total an estimated $469,373 a year — whether the aircraft flies or not.</p>
+      <h3 class="reveal">Flying it pays you instead.</h3>
+      <p class="reveal">At 250 Part 135 hours and recent sales near $4,000/hr, the 85% aircraft allocation covers every operating cost and our management fee — and still nets the owner roughly $87K.</p>
       <h3 class="reveal">You stay in control.</h3>
-      <p class="reveal">Your schedule always comes first. You set the rules and approve availability before anything is booked.</p>
-      <h3 class="reveal">Scale works in your favor.</h3>
-      <p class="reveal">Fleet pricing on fuel, insurance, training, and parts — rates single-aircraft owners can't reach alone.</p>
+      <p class="reveal">Your schedule always comes first. You set blackout dates and minimum notice, and approve availability before anything is booked.</p>
     </div>
     <div class="ledger reveal" id="ledger">
-      <div class="ledger-head"><span>WSA OWNER LEDGER — ILLUSTRATIVE YEAR</span><b>SUPER-MIDSIZE</b></div>
+      <div class="ledger-head"><span>WSA OWNER LEDGER — CITATION MUSTANG</span><b>250 CHARTER HRS · 85/15 SPLIT</b></div>
       <div class="ledger-body">
-        <div class="bar-row">
-          <div class="bar-label"><span>Fixed ownership costs</span><span>$1.40M</span></div>
-          <div class="bar"><div class="bar-fill bf-cost" data-w="100"></div></div>
+        <div class="lrow hdr"><span>Line item</span><span>Hourly</span><span>250-hr year</span></div>
+        <div class="lrow"><span class="nm">Part 135 gross charter sales</span><span class="hr">$4,000.00</span><span class="yr">$1,000,000</span></div>
+        <div class="lrow"><span class="nm">85% aircraft allocation</span><span class="hr">$3,400.00</span><span class="yr">$850,000</span></div>
+        <div class="lrow minus"><span class="nm">Estimated operating cost</span><span class="hr">$2,848.09</span><span class="yr">$712,023</span></div>
+        <div class="lrow"><span class="nm">Net before management fee</span><span class="hr">$551.91</span><span class="yr">$137,978</span></div>
+        <div class="lrow minus"><span class="nm">Annual management fee</span><span class="hr">$204.16</span><span class="yr">$51,041</span></div>
+        <div class="lrow net"><span class="nm">Net charter proceeds to owner</span><span class="hr">$347.75</span><span class="yr">+$86,936</span></div>
+        <div class="versus">
+          <div class="v-title">Same aircraft, same year</div>
+          <div class="v-row sit"><span class="k">Sits in the hangar</span><div class="bar"><div class="fill" data-w="84"></div></div><span class="amt">−$469,373</span></div>
+          <div class="v-row fly"><span class="k">Chartered with WSA</span><div class="bar"><div class="fill" data-w="16"></div></div><span class="amt">+$86,936</span></div>
         </div>
-        <div class="bar-row">
-          <div class="bar-label"><span>Charter revenue contribution</span><span>−$0.85M</span></div>
-          <div class="bar"><div class="bar-fill bf-offset" data-w="61"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-label"><span>Net owner cost</span><span>$0.55M</span></div>
-          <div class="bar"><div class="bar-fill bf-net" data-w="39"></div></div>
-        </div>
-        <div class="ledger-result"><span>Fixed-cost offset</span><b>≈ 61%</b></div>
-        <p class="ledger-note">Illustration only — actual results vary with aircraft type, utilization, market rates, and owner usage. We'll model your tail number specifically during an owner consultation.</p>
+        <div class="ledger-result"><span>Annual swing</span><b>≈ $556,309</b></div>
+        <p class="ledger-note">Estimates from a current managed Citation Mustang: 250-hour utilization, Jet-A at $7.25/gal (~112 gal/hr), recent Part 135 sales near $4,000/hr. Operating cost is paid from the 85% aircraft allocation first. Illustration only — excludes acquisition, financing, depreciation, and taxes. We'll model your tail number specifically.</p>
       </div>
     </div>
   </div>
@@ -462,7 +476,7 @@ nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){
     e.target.classList.add('in');
-    e.target.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w+'%');
+    e.target.querySelectorAll('.bar-fill,.fill').forEach(b=>b.style.width=b.dataset.w+'%');
     io.unobserve(e.target);
   }
 }),{threshold:.15});
